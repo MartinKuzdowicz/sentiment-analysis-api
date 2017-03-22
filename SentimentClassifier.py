@@ -1,15 +1,19 @@
 from nltk.tokenize import sent_tokenize, word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
 import sys  
+import os
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
-with open("/Users/mku11/Documents/ml/sentiment labelled sentences/imdb_labelled.txt", "r") as text_file:
+def _getFilePath(filename):
+	return os.path.join(os.path.dirname(__file__), 'resources/training_data/'+filename)
+
+with open(_getFilePath('imdb_labelled.txt'), 'r') as text_file:
     lines = text_file.read().split('\n')
-with open("/Users/mku11/Documents/ml/sentiment labelled sentences/amazon_cells_labelled.txt", "r") as text_file:
+with open(_getFilePath('amazon_cells_labelled.txt'), 'r') as text_file:
     lines += text_file.read().split('\n')
-with open("/Users/mku11/Documents/ml/sentiment labelled sentences/yelp_labelled.txt", "r") as text_file:
+with open(_getFilePath('yelp_labelled.txt'), 'r') as text_file:
     lines += text_file.read().split('\n')
 
 lines = [line.split('\t') for line in lines if len(line.split('\t'))==2 and line.split('\t')[1] <> '']
