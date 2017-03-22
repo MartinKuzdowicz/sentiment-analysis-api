@@ -15,26 +15,31 @@ def _mapToWeight(sentimentBinaryResult):
 	else:
 		return 0.4
 
+def _importAndPrepareTrainingDataMatrix():
+	with open(_getFilePath('imdb_labelled.txt'), 'r') as text_file:
+	    lines = text_file.read().split('\n')
+	with open(_getFilePath('amazon_cells_labelled.txt'), 'r') as text_file:
+	    lines += text_file.read().split('\n')
+	with open(_getFilePath('yelp_labelled.txt'), 'r') as text_file:
+	    lines += text_file.read().split('\n')
+
+	matrix = [line.split('\t') for line in lines if len(line.split('\t'))==2 and line.split('\t')[1] <> '']
+	return matrix
+
 class SentimentAnaliser:
 
 	def __init__(self):
-		with open(_getFilePath('imdb_labelled.txt'), 'r') as text_file:
-		    lines = text_file.read().split('\n')
-		with open(_getFilePath('amazon_cells_labelled.txt'), 'r') as text_file:
-		    lines += text_file.read().split('\n')
-		with open(_getFilePath('yelp_labelled.txt'), 'r') as text_file:
-		    lines += text_file.read().split('\n')
-
-		lines = [line.split('\t') for line in lines if len(line.split('\t'))==2 and line.split('\t')[1] <> '']
-
-		train_documents = [line[0] for line in lines]
-		train_labels = [int(line[1]) for line in lines]
+		# prepare data for classifier
+		trainingDataMatrix = _importAndPrepareTrainingDataMatrix()
+		train_documents_list = [line[0] for line in trainingDataMatrix]
+		train_ranks_list = [int(line[1]) for line in trainingDataMatrix]
 
 		self.count_vectorizer = CountVectorizer(binary='true')
 		self.count_vectorizer._validate_vocabulary()
-		train_documents = self.count_vectorizer.fit_transform(train_documents)
+		train_documents_list = self.count_vectorizer.fit_transform(train_documents_list)
 
-		self.classifier = BernoulliNB().fit(train_documents,train_labels)
+		# train classifier
+		self.classifier = BernoulliNB().fit(train_documents_list, train_ranks_list)
 
 	def getSentimentWeigth(self, text):
 		binaryRes = self.classifier.predict(self.count_vectorizer.transform([text]))
