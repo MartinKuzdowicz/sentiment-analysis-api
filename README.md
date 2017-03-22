@@ -8,29 +8,30 @@
 
 	Python
 	pip
+	virtualenv
 
 # how to start and install dependecies
 	
-1. install virtualenv
+	1. install virtualenv
 
-	sudo pip install virtualenv
+		sudo pip install virtualenv
 
-2. create virtualenv
+	2. create virtualenv
 
-	virtualenv venv
+		virtualenv venv
 
-3. activate virtualenv
+	3. activate virtualenv
 
-	. venv/bin/activate
+		. venv/bin/activate
 
-4. activate virtualenv and install dependencies
+	4. activate virtualenv and install dependencies
 
-	sudo pip install -r requirements.txt
+		sudo pip install -r requirements.txt
 
-5. start server
+	5. start server
 
-	python server.py
+		python server.py
 
-to deactivate virtualenv
+# to deactivate virtualenv
 
 	deactivate
