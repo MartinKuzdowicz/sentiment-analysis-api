@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from SentimentAnaliser import SentimentAnaliser
+from sentiment_analiser import SentimentAnaliser
 
 app = Flask(__name__)
 sentAnl = SentimentAnaliser()
