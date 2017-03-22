@@ -10,6 +10,12 @@ sys.setdefaultencoding('utf8')
 def _getFilePath(filename):
 	return os.path.join(os.path.dirname(__file__), 'resources/training_data/'+filename)
 
+def _mapToWeight(sentimentBinaryResult):
+	if sentimentBinaryResult == 1:
+		return 0.8
+	else:
+		return 0.4
+
 class SentimentAnaliser:
 
 	def __init__(self):
@@ -32,7 +38,8 @@ class SentimentAnaliser:
 		self.classifier = BernoulliNB().fit(train_documents,train_labels)
 
 	def getSentimentWeigth(self, text):
-		return self.classifier.predict(self.count_vectorizer.transform([text]))
+		binaryRes = self.classifier.predict(self.count_vectorizer.transform([text]))
+		return _mapToWeight(binaryRes)
 
 senAnl = SentimentAnaliser()
 
