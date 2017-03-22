@@ -41,9 +41,4 @@ class SentimentAnaliser:
 		binaryRes = self.classifier.predict(self.count_vectorizer.transform([text]))
 		return _mapToWeight(binaryRes)
 
-senAnl = SentimentAnaliser()
-
-example_text = "this is the best movied"
-
-print(senAnl.getSentimentWeigth(example_text))
 
