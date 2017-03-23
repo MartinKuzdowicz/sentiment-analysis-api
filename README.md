@@ -32,6 +32,10 @@
 
 		python server.py
 
+# how to use:
+
+	go to browser and, type: localhost:5000/api/v1/sentiment/<text to calculate sentiment>
+
 # to deactivate virtualenv
 
 	deactivate
