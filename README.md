@@ -5,7 +5,7 @@
 	build on Flask microframework
 	
 	training data for sentiment analysis comes from UC Irvine Machine Learning Repository:
-	[https://archive.ics.uci.edu/ml/machine-learning-databases/00331/](https://archive.ics.uci.edu/ml/machine-learning-databases/00331/)
+[https://archive.ics.uci.edu/ml/machine-learning-databases/00331/](https://archive.ics.uci.edu/ml/machine-learning-databases/00331/)
 
 # Requierments
 
