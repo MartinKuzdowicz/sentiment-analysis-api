@@ -10,7 +10,7 @@ def classifySentiment(sentence):
    	return jsonify({'sentimentWeigth': sentimentWeigth})
 
 @app.after_request
-def applyAfterRequestTrigger(response):
+def applyTriggerAfterRequest(response):
     response.headers['Access-Control-Allow-Origin'] = "*"
     return response
 
