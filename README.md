@@ -31,7 +31,7 @@ training data for sentiment analysis comes from UC Irvine Machine Learning Repos
 
 		. venv/bin/activate
 
-	5. activate virtualenv and install dependencies
+	5. install dependencies
 
 		sudo pip install -r requirements.txt
 
